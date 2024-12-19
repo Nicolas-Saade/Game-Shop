@@ -1,8 +1,30 @@
-Report and Specification
+Build System Instructions for Deliverable 3
 --------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 * As per TA instructions, the project report is fully completed with all required sections in the wiki and is navigable using this link: [https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-3-Project-Report.](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-3:-Project-Report)
 * In the report, you will find the complete build system instructions as well as all the other project report components required in the rubric.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Build System Instructions for Deliverable 2
+--------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* As per TA instructions, the project report, QA Plan, and QA Report are fully completed with all required sections in the wiki and are navigable using this link: [https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-1-Project-Report.](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report)
+* In the report, you will also find the Deliverable 2 Build System Instructions, Instructions on how to access the Jacoco Test Coverage Reports (In the QA Report), and Instructions on how to access the API docs for the controller methods implemented.
+* The Deliverable 2 Build System Instructions operate under the assumption that the build system instructions from Deliverable 1 have been followed (see the section below and the Deliverable 1 project report for that).
+* Note about the backlog: As per the professor's instructions when we asked her, to link commits and issues in the backlog, we go into our deliverable 2 issues and, for each issue, add the link to the commit that completes the issue.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Build System Instructions for Deliverable 1
+--------
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* As per TA instructions, the project report is fully completed with all required sections in the wiki and is navigable using this link: https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-1-Project-Report.
+* As per deliverable 1 instructions and confirmation by TAs, this README file is to contain instructions regarding the required configs aspect of the build system.
+* The other part of the build system submission (Testing Summary) is to be completed as part of the wiki along with the project report.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 STEP 1: Clone The Repository
