@@ -1,3 +1,4 @@
+import api from './utils/axiosConfig';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'; // Import the persistence plugin
@@ -41,11 +42,12 @@ pinia.use(piniaPluginPersistedstate);
 // Function to ensure the manager account exists
 const ensureManagerAccount = async () => {
   try {
+    console.log("AYOOOOOOOOOOOOOOOOO")
     // Check if the manager account already exists
-    const managerResponse = await axios.get('http://localhost:8080/account/getmanager');
+    const managerResponse = await api.get('/account/getmanager');
 
     if (managerResponse.data) {
-      console.log('Manager account already exists:', managerResponse.data);
+      console.log('Manager account already existsssssssss:', managerResponse.data);
     } else {
       console.warn('Manager account check returned no data; proceeding to creation.');
     }
@@ -53,8 +55,8 @@ const ensureManagerAccount = async () => {
     if (error.response && error.response.status === 404) {
       // If the manager does not exist, create it
       try {
-        const creationResponse = await axios.post(
-          'http://localhost:8080/account/manager',
+        const creationResponse = await api.post(
+          '/account/manager',
           {
             email: 'manager@manager.com',
             password: 'manager123',

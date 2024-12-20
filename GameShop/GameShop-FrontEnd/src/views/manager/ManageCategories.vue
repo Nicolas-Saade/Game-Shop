@@ -84,6 +84,7 @@
 </template>
 
 <script>
+import api from './../../utils/axiosConfig';
 import { defineComponent, ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 
@@ -103,7 +104,7 @@ export default defineComponent({
 
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/categories');
+        const response = await api.get('/categories');
         const data = response.data.categories;
         categories.value = data.map((cat) => cat.categoryName);
         categoryMap.value = {};

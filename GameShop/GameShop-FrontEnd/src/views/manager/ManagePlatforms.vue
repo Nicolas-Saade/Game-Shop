@@ -84,6 +84,7 @@
   </template>
   
   <script>
+  import api from './../../utils/axiosConfig';
   import { defineComponent, ref, onMounted, computed } from 'vue';
   import axios from 'axios';
   
@@ -103,7 +104,7 @@
   
       const fetchPlatforms = async () => {
         try {
-          const response = await axios.get('http://localhost:8080/platforms');
+          const response = await api.get('/platforms');
           const data = response.data.platforms;
           platforms.value = data.map((plat) => plat.platformName);
           platformMap.value = {};

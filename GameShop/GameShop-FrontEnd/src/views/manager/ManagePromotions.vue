@@ -114,6 +114,7 @@
 </template>
 
 <script>
+import api from './../../utils/axiosConfig';
 import { defineComponent, ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useAuthStore } from '@/stores/auth';
@@ -140,7 +141,7 @@ export default defineComponent({
 
     const fetchPromotions = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/promotions');
+        const response = await api.get('/promotions');
         promotions.value = response.data.promotions || [];
       } catch (error) {
         console.error('Error fetching promotions:', error);
@@ -149,7 +150,7 @@ export default defineComponent({
 
     const fetchGames = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/games');
+        const response = await api.get('/games');
         games.value = response.data.games || [];
       } catch (error) {
         console.error('Error fetching games:', error);

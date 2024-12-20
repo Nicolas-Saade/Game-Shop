@@ -1,3 +1,4 @@
+import api from './../utils/axiosConfig';
 import { defineStore } from "pinia";
 import axios from "axios";
 
@@ -9,7 +10,7 @@ export const usePromotionsStore = defineStore("promotions", {
   actions: {
     async fetchPromotions() {
       try {
-        const response = await axios.get("http://localhost:8080/promotions");
+        const response = await api.get("/promotions");
         this.promotions = response.data.promotions || [];
         return this.promotions; // Return the array of promotions
       } catch (error) {
@@ -23,7 +24,7 @@ export const usePromotionsStore = defineStore("promotions", {
     // And end date after today
     async fetchValidPromotions() {
       try {
-        const response = await axios.get("http://localhost:8080/promotions");
+        const response = await api.get("/promotions");
         this.promotions = response.data.promotions || [];
         let today = new Date();
         let validPromotions = this.promotions.filter(promotion => {
