@@ -38,3 +38,5 @@ out/
 .idea/
 .DS_Store
 
+.env
+
