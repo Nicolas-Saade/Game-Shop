@@ -1,0 +1,6 @@
+**/.gradle
+**/build
+**/target
+**/out
+Dockerfile
+README.md
