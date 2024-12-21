@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { usePromotionsStore } from "./promotions.js";
+import apiFetch from "./../utils/apiFetch";
 
 export const productsStore = defineStore("products", {
   state: () => ({
@@ -11,8 +12,8 @@ export const productsStore = defineStore("products", {
     async fetchProductsFromDB() {
       try {
         // Fetch Games from the backend
-        const response = await fetch("http://localhost:8080/games");
-        const data = await response.json();
+        const data = await apiFetch("/games");
+        // const data = await response.json();
 
         // Fetch Valid Promotions
         const validPromos = await usePromotionsStore().fetchValidPromotions();
@@ -123,13 +124,13 @@ export const productsStore = defineStore("products", {
     async addGame(gameData) {
       let newGame = undefined;
       try {
-        const response = await fetch("http://localhost:8080/games", {
+        newGame = await apiFetch("/games", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(gameData),
         });
-        newGame = await response.json();
-        newGame = await response.json();
+        // newGame = await response.json();
+
         this.products.push(newGame);
         console.log("Game added:", newGame);
       } catch (error) {
@@ -149,15 +150,15 @@ export const productsStore = defineStore("products", {
           };
 
           // Create the specific game
-          const specificGameResponse = await fetch(
-            "http://localhost:8080/specificGames",
+          const newSpecificGame = await apiFetch(
+            "/specificGames",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(specificGameData),
             }
           );
-          const newSpecificGame = await specificGameResponse.json();
+          // const newSpecificGame = await specificGameResponse.json();
           if (newSpecificGame !== null) {
             console.log("Specific Game added:", newSpecificGame);
           }
@@ -179,15 +180,15 @@ export const productsStore = defineStore("products", {
           };
 
           // Create the specific game
-          const specificGameResponse = await fetch(
-            "http://localhost:8080/specificGames",
+          const newSpecificGame = await apiFetch(
+            "/specificGames",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(specificGameData),
             }
           );
-          const newSpecificGame = await specificGameResponse.json();
+          // const newSpecificGame = await specificGameResponse.json();
           if (newSpecificGame !== null) {
             console.log("Specific Game added:", newSpecificGame);
           }
@@ -199,8 +200,8 @@ export const productsStore = defineStore("products", {
 
     async fetchCategories() {
       try {
-        const response = await fetch("http://localhost:8080/categories");
-        const data = await response.json();
+        const data = await apiFetch("/categories");
+        // const data = await response.json();
         this.categories = data.categories || []; // Ensure categories are updated in the store
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -209,8 +210,8 @@ export const productsStore = defineStore("products", {
 
     async fetchPlatforms() {
       try {
-        const response = await fetch("http://localhost:8080/platforms");
-        const data = await response.json();
+        const data = await apiFetch("/platforms");
+        // const data = await response.json();
         return data.platforms;
       } catch (error) {
         console.error("Error fetching platforms:", error);

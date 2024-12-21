@@ -26,6 +26,7 @@
   import { onMounted } from "vue";
   import { ref } from "vue";
   import { useRouter } from "vue-router";
+  import apiFetch from "./../../utils/apiFetch";
 
   export default {
     name: "ArchiveEmployee",
@@ -48,11 +49,11 @@
 
       const fetchEmployees = async () => {
         try {
-          const response = await fetch("http://localhost:8080/account/employees");
-          if (!response.ok) {
-            throw new Error("Failed to fetch employees.");
-          }
-          const data = await response.json();
+          const data = await apiFetch("/account/employees");
+          // if (!response.ok) {
+          //   throw new Error("Failed to fetch employees.");
+          // }
+          // const data = await response.json();
           
           employees.value = data.accounts.map((employee) => ({
             email: employee.email,
@@ -71,18 +72,19 @@
           errorMessage.value = "";
 
           // Send PUT request to archive the employee
-          const response = await fetch(`http://localhost:8080/account/employee/${email}`, {
+          const data = await apiFetch(`/account/employee/${email}`, {
             method: "PUT",
           });
 
-          if (!response.ok) {
-            // Handle not found or other errors
-            if (response.status === 404) {
-              throw new Error("Employee account not found.");
-            } else {
-              throw new Error(`Failed to archive employee. Status: ${response.status}`);
-            }
-          }
+          // if (!response.ok) {
+          //   // Handle not found or other errors
+          //   if (response.status === 404) {
+          //     throw new Error("Employee account not found.");
+          //   } else {
+          //     throw new Error(`Failed to archive employee. Status: ${response.status}`);
+          //   }
+          // }
+          // TODO check
 
           successMessage.value = `Employee account with email ${email} has been archived successfully.`;
           fetchEmployees(); // Refresh the list of employees

@@ -29,6 +29,7 @@
   
   <script>
   import { ref, onMounted } from "vue";
+  import apiFetch from "./../../utils/apiFetch";
   
   export default {
     name: "ListCustomers",
@@ -42,14 +43,14 @@
     errorMessage.value = ""; // Clear previous errors
     console.log("Fetching customers...");
     // Fetch customer data from backend
-    const response = await fetch("http://localhost:8080/account/customers", {
+    const data = await apiFetch("/account/customers", {
       method: "GET",
     });
-    console.log("API response status:", response.status);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch customers. Status: ${response.status}`);
-    }
-    const data = await response.json();
+    // console.log("API response status:", response.status);
+    // if (!response.ok) {
+    //   throw new Error(`Failed to fetch customers. Status: ${response.status}`);
+    // }
+    // const data = await response.json();
     console.log("API response data:", data);
     customers.value = data.accounts;
     console.log("Customers stored in state:", customers.value);

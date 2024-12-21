@@ -22,6 +22,7 @@
   import { defineComponent, ref, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
   import { VContainer, VList, VListItem, VIcon } from 'vuetify/components';
+  import apiFetch from "./../../utils/apiFetch";
   
   export default defineComponent({
     name: 'ListGames',
@@ -37,8 +38,8 @@
   
       const fetchGames = async () => {
         try {
-          const response = await fetch('http://localhost:8080/games');
-          const data = await response.json();
+          const data = await apiFetch('/games');
+          // const data = await response.json();
           games.value = data.games || [];
         } catch (error) {
           console.error('Error fetching games:', error);

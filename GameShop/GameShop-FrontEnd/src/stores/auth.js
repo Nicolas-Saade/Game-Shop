@@ -5,6 +5,7 @@ import { useRouter } from "vue-router";
 import { useCartStore } from "@/stores/cart";
 import { useWishlistStore } from "@/stores/wishlist";
 import api from "./../utils/axiosConfig";
+import apiFetch from "./../utils/apiFetch";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -61,18 +62,11 @@ export const useAuthStore = defineStore("auth", {
 
     async registerCustomer(accountData) {
       try {
-        const response = await fetch("http://localhost:8080/account/customer", {
+        const data = await apiFetch("/account/customer", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(accountData),
         });
-
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`Registration failed: ${errorText}`);
-        }
-
-        const data = await response.json();
         console.log("Customer registration successful:", data);
 
         return data; // Return the registered account data

@@ -27,6 +27,7 @@
   
   <script>
   import { ref, onMounted } from "vue";
+  import apiFetch from "./../../utils/apiFetch";
   
   export default {
     name: "ViewEmployees",
@@ -39,14 +40,16 @@
   try {
     errorMessage.value = ""; // Clear previous errors
     console.log("Fetching employees...");
-    const response = await fetch("http://localhost:8080/account/employees", {
+    const data = await apiFetch("/account/employees", {
       method: "GET",
     });
-    console.log("API response status:", response.status);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch employees. Status: ${response.status}`);
-    }
-    const data = await response.json();
+
+    // console.log("API response status:", response.status);
+    // if (!response.ok) {
+    //   throw new Error(`Failed to fetch employees. Status: ${response.status}`);
+    // }
+    // const data = await response.json();
+
     console.log("API response data:", data);
     // Access the 'accounts' array from the response
     employees.value = data.accounts;

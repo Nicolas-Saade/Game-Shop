@@ -33,6 +33,7 @@
 import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
+import apiFetch from "./../../utils/apiFetch";
 
 export default defineComponent({
   name: 'AddEmployee',
@@ -63,7 +64,7 @@ export default defineComponent({
     const submitForm = async () => {
       try {
         // Assuming you have an API endpoint for creating employees
-        const response = await fetch('http://localhost:8080/account/employee', {
+        const data = await apiFetch('/account/employee', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -77,13 +78,15 @@ export default defineComponent({
           }),
         });
 
-        const data = await response.json();
-        if (response.ok) {
-          alert('Employee created successfully.');
-          router.push({ name: 'ManagerDashboard' });
-        } else {
-          alert(`Failed to create employee: Email already exists`);
-        }
+        // const data = await response.json();
+        // if (response.ok) {
+        //   alert('Employee created successfully.');
+        //   router.push({ name: 'ManagerDashboard' });
+        // } else {
+        //   alert(`Failed to create employee: Email already exists`);
+        // }
+        // TODO check
+
       } catch (error) {
         console.error('Error creating employee: Email already exists');
         alert('Error creating employee.');

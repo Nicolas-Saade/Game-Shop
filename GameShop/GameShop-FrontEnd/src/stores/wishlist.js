@@ -3,6 +3,7 @@ import { useAuthStore } from "@/stores/auth";
 import { useCartStore } from "@/stores/cart";
 import { usePromotionsStore } from "@/stores/promotions";
 import { productsStore } from "@/stores/products";
+import apiFetch from "./../utils/apiFetch";
 
 export const useWishlistStore = defineStore("wishlist", {
   state: () => ({
@@ -19,15 +20,15 @@ export const useWishlistStore = defineStore("wishlist", {
       }
 
       try {
-        const response = await fetch(
-          `http://localhost:8080/wishlist/customer/${authStore.user.email}`
+        const data = await apiFetch(
+          `/wishlist/customer/${authStore.user.email}`
         );
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch wishlist.");
-        }
+        // if (!response.ok) {
+        //   throw new Error("Failed to fetch wishlist.");
+        // }
 
-        const data = await response.json();
+        // const data = await response.json();
 
         // Extract wishlistId and games
         this.wishlistId = data.wishlistId;
@@ -104,16 +105,16 @@ export const useWishlistStore = defineStore("wishlist", {
       console.log("Adding game to wishlist:", this.wishlistId);
 
       try {
-        const response = await fetch(
-          `http://localhost:8080/wishlist/${this.wishlistId}/${tgt_game.gameId}`,
+        const response = await apiFetch(
+          `/wishlist/${this.wishlistId}/${tgt_game.gameId}`,
           {
             method: "PUT",
           }
         );
 
-        if (!response.ok) {
-          throw new Error("Failed to add game to wishlist.");
-        }
+        // if (!response.ok) {
+        //   throw new Error("Failed to add game to wishlist.");
+        // }
 
         await this.fetchWishlist(tgt_game); // Refresh the wishlist after adding
         alert("Game added to WishList!");
@@ -128,16 +129,16 @@ export const useWishlistStore = defineStore("wishlist", {
       }
 
       try {
-        const response = await fetch(
-          `http://localhost:8080/wishlist/${this.wishlistId}/${gameId}`,
+        const response = await apiFetch(
+          `/wishlist/${this.wishlistId}/${gameId}`,
           {
             method: "DELETE",
           }
         );
 
-        if (!response.ok) {
-          throw new Error("Failed to remove game from wishlist.");
-        }
+        // if (!response.ok) {
+        //   throw new Error("Failed to remove game from wishlist.");
+        // }
 
         await this.fetchWishlist(); // Refresh the wishlist after removing
       } catch (error) {
@@ -151,16 +152,16 @@ export const useWishlistStore = defineStore("wishlist", {
       }
 
       try {
-        const response = await fetch(
-          `http://localhost:8080/wishlist/${this.wishlistId}`,
+        const response = await apiFetch(
+          `/wishlist/${this.wishlistId}`,
           {
             method: "PUT",
           }
         );
 
-        if (!response.ok) {
-          throw new Error("Failed to clear wishlist.");
-        }
+        // if (!response.ok) {
+        //   throw new Error("Failed to clear wishlist.");
+        // }
 
         await this.fetchWishlist(); // Refresh the wishlist after clearing
       } catch (error) {

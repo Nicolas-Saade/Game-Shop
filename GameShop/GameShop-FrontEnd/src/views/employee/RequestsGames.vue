@@ -67,6 +67,7 @@
   import { defineComponent, ref, onMounted } from 'vue';
   import { productsStore } from '@/stores/products';
   import { useRouter } from 'vue-router';
+  import apiFetch from "./../../utils/apiFetch";
   
   export default defineComponent({
     name: 'RequestsGames',
@@ -100,8 +101,8 @@
   
       const fetchCategories = async () => {
         try {
-          const response = await fetch('http://localhost:8080/categories');
-          const data = await response.json();
+          const data = await apiFetch('/categories');
+          // const data = await response.json();
           categories.value = data.categories.map((cat) => cat.categoryName);
           categoryMap.value = {};
           data.categories.forEach((cat) => {
@@ -114,8 +115,8 @@
   
       const fetchPlatforms = async () => {
         try {
-          const response = await fetch('http://localhost:8080/platforms');
-          const data = await response.json();
+          const data = await apiFetch('/platforms');
+          // const data = await response.json();
           platforms.value = data.platforms.map((plat) => plat.platformName);
           platformMap.value = {};
           data.platforms.forEach((plat) => {

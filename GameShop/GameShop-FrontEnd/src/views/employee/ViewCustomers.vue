@@ -27,7 +27,8 @@
   
   <script>
   import { ref, onMounted } from "vue";
-  
+  import apiFetch from "./../../utils/apiFetch";
+
   export default {
     name: "ViewCustomers",
     setup() {
@@ -40,16 +41,18 @@
     errorMessage.value = ""; // Clear previous errors
     console.log("Fetching customers...");
     // Fetch customer data from the backend
-    const response = await fetch("http://localhost:8080/account/customers", {
+    const data = await apiFetch("/account/customers", {
       method: "GET",
     });
-    console.log("API response status:", response.status);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch customers. Status: ${response.status}`);
-    }
-    // Parse and store the customer data
-    const data = await response.json();
-    console.log("API response data:", data);
+
+    // console.log("API response status:", response.status);
+    // if (!response.ok) {
+    //   throw new Error(`Failed to fetch customers. Status: ${response.status}`);
+    // }
+    // // Parse and store the customer data
+    // const data = await response.json();
+    // console.log("API response data:", data);
+
     // Access the 'accounts' array from the response
     customers.value = data.accounts; // Correctly accessing accounts instead of customers
     console.log("Customers stored in state:", customers.value);

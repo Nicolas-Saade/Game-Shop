@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { useAuthStore } from "@/stores/auth";
+import apiFetch from "./../utils/apiFetch";
 
 export const productDetailStore = defineStore("productDetail", {
   state: () => ({
@@ -17,7 +18,7 @@ export const productDetailStore = defineStore("productDetail", {
       }
 
       try {
-        const response = await fetch("http://localhost:8080/reviews", {
+        const response = await apiFetch("/reviews", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -30,10 +31,10 @@ export const productDetailStore = defineStore("productDetail", {
           }),
         });
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`Failed to submit review. Server response: ${errorText}`);
-        }
+        // if (!response.ok) {
+        //   const errorText = await response.text();
+        //   throw new Error(`Failed to submit review. Server response: ${errorText}`);
+        // }
 
         await this.fetchReviews(reviewData.gameId);
       } catch (error) {
@@ -44,7 +45,7 @@ export const productDetailStore = defineStore("productDetail", {
     async submitReply(replyData){
       console.log(replyData);
       try {
-        const response = await fetch("http://localhost:8080/replies", {
+        const response = await apiFetch("/replies", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -58,11 +59,11 @@ export const productDetailStore = defineStore("productDetail", {
           }),
         });
       
-        if (!response.ok) {
-          const errorText = await response.text();
-          console.error("Server error response:", errorText); // Log the exact server error
-          throw new Error(`Failed to submit reply. Server response: ${errorText}`);
-        }
+        // if (!response.ok) {
+        //   const errorText = await response.text();
+        //   console.error("Server error response:", errorText); // Log the exact server error
+        //   throw new Error(`Failed to submit reply. Server response: ${errorText}`);
+        // }
       
       } catch (error) {
         console.error("Error submitting reply:", error.message);
@@ -72,11 +73,11 @@ export const productDetailStore = defineStore("productDetail", {
     // Fetch reviews for a specific product
     async fetchReviews(gameId) {
       try {
-        const response = await fetch(`http://localhost:8080/reviews/review/game${gameId}`);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch reviews. Status: ${response.status}`);
-        }
-        const data = await response.json();
+        const data = await apiFetch(`/reviews/review/game${gameId}`);
+        // if (!response.ok) {
+        //   throw new Error(`Failed to fetch reviews. Status: ${response.status}`);
+        // }
+        // const data = await response.json();
 
         this.reviews = data.reviews.map((review) => ({
           id: review.reviewId,
@@ -93,16 +94,16 @@ export const productDetailStore = defineStore("productDetail", {
     // Increase review rating
     async increaseRatingReview(reviewId) {
       try {
-        const response = await fetch(`http://localhost:8080/reviews/review/${reviewId}/1`, {
+        const updatedReview = await apiFetch(`/reviews/review/${reviewId}/1`, {
           method: "PUT",
         });
     
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`Failed to upvote review. Server response: ${errorText}`);
-        }
+        // if (!response.ok) {
+        //   const errorText = await response.text();
+        //   throw new Error(`Failed to upvote review. Server response: ${errorText}`);
+        // }
     
-        const updatedReview = await response.json();
+        // const updatedReview = await response.json();
         const reviewIndex = this.reviews.findIndex((r) => r.id === reviewId);
         if (reviewIndex !== -1) {
           this.reviews[reviewIndex].reviewRating = updatedReview.rating;
@@ -114,11 +115,11 @@ export const productDetailStore = defineStore("productDetail", {
     },
     async fetchReplies(reviewId) {
       try {
-        const response = await fetch(`http://localhost:8080/reviews/review/reply/${reviewId}`);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch replies. Status: ${response.status}`);
-        }
-        const data = await response.json();
+        const data = await apiFetch(`/reviews/review/reply/${reviewId}`);
+        // if (!response.ok) {
+        //   throw new Error(`Failed to fetch replies. Status: ${response.status}`);
+        // }
+        // const data = await response.json();
         return data.replies.map((reply) => ({
           replyId: reply.replyId,
           description: reply.description,
@@ -134,16 +135,16 @@ export const productDetailStore = defineStore("productDetail", {
     // Decrease review rating
     async decreaseRatingReview(reviewId) {
       try {
-        const response = await fetch(`http://localhost:8080/reviews/review/${reviewId}/-1`, {
+        const updatedReview = await apiFetch(`/reviews/review/${reviewId}/-1`, {
           method: "PUT",
         });
     
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`Failed to downvote review. Server response: ${errorText}`);
-        }
+        // if (!response.ok) {
+        //   const errorText = await response.text();
+        //   throw new Error(`Failed to downvote review. Server response: ${errorText}`);
+        // }
     
-        const updatedReview = await response.json();
+        // const updatedReview = await response.json();
         const reviewIndex = this.reviews.findIndex((r) => r.id === reviewId);
         if (reviewIndex !== -1) {
           this.reviews[reviewIndex].reviewRating = updatedReview.rating;
@@ -155,11 +156,11 @@ export const productDetailStore = defineStore("productDetail", {
     },
     async fetchManagerUsername(email) {
       try {
-        const response = await fetch(`http://localhost:8080/account/getmanager?email=${email}`);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch manager details. Status: ${response.status}`);
-        }
-        const manager = await response.json();
+        const manager = await apiFetch(`/account/getmanager?email=${email}`);
+        // if (!response.ok) {
+        //   throw new Error(`Failed to fetch manager details. Status: ${response.status}`);
+        // }
+        // const manager = await response.json();
         return manager.username;
       } catch (error) {
         console.error("Error fetching manager username:", error.message);
@@ -168,11 +169,11 @@ export const productDetailStore = defineStore("productDetail", {
     },
     async fetchCustomerUsername(email) {
       try {
-        const response = await fetch(`http://localhost:8080/account/customer/${email}`);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch customer details. Status: ${response.status}`);
-        }
-        const customer = await response.json();
+        const customer = await apiFetch(`/account/customer/${email}`);
+        // if (!response.ok) {
+        //   throw new Error(`Failed to fetch customer details. Status: ${response.status}`);
+        // }
+        // const customer = await response.json();
         return customer.username;
       } catch (error) {
         console.error("Error fetching customer username:", error.message);

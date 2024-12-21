@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { useAuthStore } from "@/stores/auth";
+import apiFetch from "./../utils/apiFetch";
 
 export const useOrderStore = defineStore("order", {
   state: () => ({
@@ -17,32 +18,26 @@ export const useOrderStore = defineStore("order", {
       }
 
       try {
-        const response = await fetch(
-          `http://localhost:8080/orders/customer/${auth.user.email}`
+        const data = await apiFetch(
+          `/orders/customer/${auth.user.email}`
         );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch orders.");
-        }
-
-        const data = await response.json();
 
         // Fetch specific games for each order
         const ordersWithGameDetails = await Promise.all(
           data.orders.map(async (order) => {
             try {
-              const specificGamesResponse = await fetch(
-                `http://localhost:8080/orders/${order.trackingNumber}/specificGames`
+              const specificGamesData = await apiFetch(
+                `/orders/${order.trackingNumber}/specificGames`
               );
 
-              if (!specificGamesResponse.ok) {
-                console.error(
-                  `Failed to fetch specific games for order: ${order.trackingNumber}`
-                );
-                return { ...order, games: [], totalPrice: 0 };
-              }
+              // if (!specificGamesResponse.ok) {
+              //   console.error(
+              //     `Failed to fetch specific games for order: ${order.trackingNumber}`
+              //   );
+              //   return { ...order, games: [], totalPrice: 0 };
+              // }
 
-              const specificGamesData = await specificGamesResponse.json();
+              // const specificGamesData = await specificGamesResponse.json();
 
               const gamesWithDetails = await Promise.all(
                 specificGamesData.games.map(async (specificGame) => {
@@ -58,15 +53,16 @@ export const useOrderStore = defineStore("order", {
                       return { title: "Unknown Game", quantity: 1, price: 0 };
                     }
 
-                    const gameResponse = await fetch(
-                      `http://localhost:8080/games/${gameId}`
+                    const gameDetails = await apiFetch(
+                      `/games/${gameId}`
                     );
 
-                    if (!gameResponse.ok) {
-                      return { title: "Unknown Game", quantity: 1, price: 0 };
-                    }
+                    // if (!gameResponse.ok) {
+                    //   return { title: "Unknown Game", quantity: 1, price: 0 };
+                    // }
 
-                    const gameDetails = await gameResponse.json();
+                    // const gameDetails = await gameResponse.json();
+
                     const gamePrice =
                       gameDetails.aPrice || gameDetails.price || 0;
 
@@ -132,18 +128,18 @@ export const useOrderStore = defineStore("order", {
     async createOrder(orderData) {
       try {
         // Step 1: Create the order
-        const response = await fetch(`http://localhost:8080/orders`, {
+        const newOrder = await apiFetch(`/orders`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(orderData),
         });
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(errorText || "Error creating order");
-        }
+        // if (!response.ok) {
+        //   const errorText = await response.text();
+        //   throw new Error(errorText || "Error creating order");
+        // }
 
-        const newOrder = await response.json();
+        // const newOrder = await response.json();
         this.currentOrder = newOrder;
 
         alert("Order successfully created!");
@@ -162,8 +158,8 @@ export const useOrderStore = defineStore("order", {
         specificGameId
       );
       try {
-        const response = await fetch(
-          `http://localhost:8080/orders/${trackingNumber}/return/${specificGameId}`,
+        const response = await apiFetch(
+          `/orders/${trackingNumber}/return/${specificGameId}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -171,11 +167,11 @@ export const useOrderStore = defineStore("order", {
           }
         );
 
-        if (!response.ok) {
-          const errorData = await response.text();
-          console.error("Server responded with:", response.status, errorData);
-          throw new Error("Failed to return game");
-        }
+        // if (!response.ok) {
+        //   const errorData = await response.text();
+        //   console.error("Server responded with:", response.status, errorData);
+        //   throw new Error("Failed to return game");
+        // }
 
         // Update the currentOrder
         await this.getOrderByTrackingNumber(trackingNumber);
@@ -196,31 +192,32 @@ export const useOrderStore = defineStore("order", {
     async getOrderByTrackingNumber(trackingNumber) {
       try {
         // Fetch the order details
-        const response = await fetch(
-          `http://localhost:8080/orders/${trackingNumber}`
+        const orderDetails = await apiFetch(
+          `/orders/${trackingNumber}`
         );
 
-        if (!response.ok) {
-          throw new Error("Error fetching order details");
-        }
+        // if (!response.ok) {
+        //   throw new Error("Error fetching order details");
+        // }
 
-        const orderDetails = await response.json();
+        // const orderDetails = await response.json();
 
         // Fetch specific games associated with the order
-        const specificGamesResponse = await fetch(
-          `http://localhost:8080/orders/${trackingNumber}/specificGames`
+        const specificGamesData = await apiFetch(
+          `/orders/${trackingNumber}/specificGames`
         );
 
-        if (!specificGamesResponse.ok) {
-          console.error(
-            `Failed to fetch specific games for order: ${trackingNumber}`
-          );
-          this.currentOrder = { ...orderDetails, games: [], totalPrice: 0 };
-          return;
-        }
+        // if (!specificGamesResponse.ok) {
+        //   console.error(
+        //     `Failed to fetch specific games for order: ${trackingNumber}`
+        //   );
+        //   this.currentOrder = { ...orderDetails, games: [], totalPrice: 0 };
+        //   return;
+        // }
 
-        // Parse the specific games data
-        const specificGamesData = await specificGamesResponse.json();
+        // // Parse the specific games data
+        // const specificGamesData = await specificGamesResponse.json();
+
         const specificGamesArray = specificGamesData.games || specificGamesData;
 
         console.log("Specific games data:", specificGamesArray);
@@ -242,15 +239,15 @@ export const useOrderStore = defineStore("order", {
                 return { title: "Unknown Game", quantity: 1, price: 0 };
               }
 
-              const gameResponse = await fetch(
-                `http://localhost:8080/games/${gameId}`
+              const gameDetails = await apiFetch(
+                `/games/${gameId}`
               );
 
-              if (!gameResponse.ok) {
-                return { title: "Unknown Game", quantity: 1, price: 0 };
-              }
+              // if (!gameResponse.ok) {
+              //   return { title: "Unknown Game", quantity: 1, price: 0 };
+              // }
 
-              const gameDetails = await gameResponse.json();
+              // const gameDetails = await gameResponse.json();
               const gamePrice = gameDetails.aPrice || gameDetails.price || 0;
 
               return {

@@ -98,6 +98,7 @@ import { productsStore } from "@/stores/products";
 import { usePromotionsStore } from "@/stores/promotions";
 import { useRouter } from "vue-router";
 import { searchQueryStore } from "@/stores/searchQuery";
+import apiFetch from "./../utils/apiFetch";
 
 export default defineComponent({
   name: "CatalogView",
@@ -177,10 +178,10 @@ export default defineComponent({
         let gamesMap = new Map();
 
         for (const promotion of allPromotions) {
-          const response = await fetch(
-            `http://localhost:8080/promotions/${promotion.promotionId}/games`
+          const data = await apiFetch(
+            `/promotions/${promotion.promotionId}/games`
           );
-          const data = await response.json();
+          // const data = await response.json();
 
           data.forEach((game) => {
             // Calcualte the discounted price
@@ -207,10 +208,10 @@ export default defineComponent({
       try {
         let gamesMap = new Map();
         for (const id of categoryIds) {
-          const response = await fetch(
-            `http://localhost:8080/categories/${id}/games`
+          const data = await apiFetch(
+            `/categories/${id}/games`
           );
-          const data = await response.json();
+          // const data = await response.json();
 
           for (let game of data.games) {
             game = await store.refreshPrices(game);
@@ -242,10 +243,10 @@ export default defineComponent({
       try {
         let gamesMap = new Map();
         for (const id of platformIds) {
-          const response = await fetch(
-            `http://localhost:8080/platforms/${id}/games`
+          const data = await apiFetch(
+            `/platforms/${id}/games`
           );
-          const data = await response.json();
+          // const data = await response.json();
 
           for (let game of data.games) {
             game = await store.refreshPrices(game);
@@ -274,10 +275,10 @@ export default defineComponent({
 
         // Fetch games by categories
         for (const id of categoryIds) {
-          const response = await fetch(
-            `http://localhost:8080/categories/${id}/games`
+          const data = await apiFetch(
+            `/categories/${id}/games`
           );
-          const data = await response.json();
+          // const data = await response.json();
 
           data.games.forEach((game) => {
             categoryGamesMap.set(game.gameId, {
@@ -291,10 +292,10 @@ export default defineComponent({
 
         // Fetch games by platforms
         for (const id of platformIds) {
-          const response = await fetch(
-            `http://localhost:8080/platforms/${id}/games`
+          const data = await apiFetch(
+            `/platforms/${id}/games`
           );
-          const data = await response.json();
+          // const data = await response.json();
 
           data.games.forEach((game) => {
             platformGamesMap.set(game.gameId, {
@@ -368,8 +369,8 @@ export default defineComponent({
 
       // Fetch categories dynamically from the backend
       try {
-        const response = await fetch("http://localhost:8080/categories");
-        const data = await response.json();
+        const data = await apiFetch("/categories");
+        // const data = await response.json();
         categories.value = data.categories.map((cat) => ({
           categoryName: cat.categoryName,
           categoryId: cat.categoryId,
@@ -380,8 +381,8 @@ export default defineComponent({
 
       // Fetch platforms dynamically from the backend
       try {
-        const response = await fetch("http://localhost:8080/platforms");
-        const data = await response.json();
+        const data = await apiFetch("platforms");
+        // const data = await response.json();
         platforms.value = data.platforms.map((plat) => ({
           platformName: plat.platformName,
           platformId: plat.platformId,
@@ -392,8 +393,8 @@ export default defineComponent({
 
       // Fetch games on sale dynamically from the backend
       try {
-        const response = await fetch("http://localhost:8080/promotions");
-        const data = await response.json();
+        const data = await apiFetch("/promotions");
+        // const data = await response.json();
         promotions.value = data.promotions.map((promo) => ({
           promotionId: promo.promotionId,
           description: promo.description,

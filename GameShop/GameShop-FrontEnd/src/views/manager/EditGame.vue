@@ -69,6 +69,7 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { productsStore } from '@/stores/products'; // Adjust the import if necessary
+import apiFetch from "./../../utils/apiFetch";
 
 export default defineComponent({
   name: 'EditGame',
@@ -105,8 +106,8 @@ export default defineComponent({
 
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://localhost:8080/categories');
-        const data = await response.json();
+        const data = await apiFetch('/categories');
+        // const data = await response.json();
         categories.value = data.categories.map((cat) => cat.categoryName);
         categoryMap.value = {};
         data.categories.forEach((cat) => {
@@ -119,8 +120,8 @@ export default defineComponent({
 
     const fetchPlatforms = async () => {
       try {
-        const response = await fetch('http://localhost:8080/platforms');
-        const data = await response.json();
+        const data = await apiFetch('/platforms');
+        // const data = await response.json();
         platforms.value = data.platforms.map((plat) => plat.platformName);
         platformMap.value = {};
         data.platforms.forEach((plat) => {
@@ -133,8 +134,8 @@ export default defineComponent({
 
     const fetchGameDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/games/${gameId}`);
-        const data = await response.json();
+        const data = await apiFetch(`/games/${gameId}`);
+        // const data = await response.json();
         console.log('Fetched game data:', data); // Debugging log
 
         // // Map category and platform IDs to names for display
@@ -182,7 +183,7 @@ export default defineComponent({
           platforms: platformIds,
         };
 
-        await fetch(`http://localhost:8080/games/${gameId}`, {
+        await apiFetch(`/games/${gameId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(updatedGame),

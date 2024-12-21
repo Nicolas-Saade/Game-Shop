@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { useAuthStore } from "@/stores/auth";
 import { productsStore } from "@/stores/products";
 import { usePromotionsStore } from "@/stores/promotions";
+import apiFetch from "./../utils/apiFetch";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
@@ -21,10 +22,9 @@ export const useCartStore = defineStore("cart", {
       }
 
       try {
-        const response = await fetch(
-          `http://localhost:8080/carts/customer/${auth.user.email}`
+        const data = await apiFetch(
+          `/carts/customer/${auth.user.email}`
         );
-        const data = await response.json();
 
         this.cartId = data.cartId;
         // Update existing cartItems or add new ones
@@ -99,7 +99,7 @@ export const useCartStore = defineStore("cart", {
       }
 
       try {
-        await fetch(`http://localhost:8080/carts/${this.cartId}/games`, {
+        await apiFetch(`/carts/${this.cartId}/games`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ gameId, quantity }),
@@ -128,17 +128,14 @@ export const useCartStore = defineStore("cart", {
       }
 
       try {
-        const response = await fetch(
-          `http://localhost:8080/carts/${this.cartId}/games/${gameId}/quantity`,
+        const data = await apiFetch(
+          `/carts/${this.cartId}/games/${gameId}/quantity`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ gameId, quantity }),
           }
         );
-        if (!response.ok) {
-          alert("Failed to update game quantity, check stock availability.");
-        }
         await this.fetchCart(tgt_game);
       } catch (error) {
         console.error("Error updating game quantity:", error);
@@ -147,7 +144,7 @@ export const useCartStore = defineStore("cart", {
 
     async removeGameFromCart(gameId, quantity) {
       try {
-        await fetch(`http://localhost:8080/carts/${this.cartId}/games/remove`, {
+        await apiFetch(`/carts/${this.cartId}/games/remove`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ gameId, quantity }),
@@ -160,7 +157,7 @@ export const useCartStore = defineStore("cart", {
 
     async clearCart() {
       try {
-        await fetch(`http://localhost:8080/carts/${this.cartId}/clear`, {
+        await apiFetch(`/carts/${this.cartId}/clear`, {
           method: "PUT",
         });
         await this.fetchCart();

@@ -42,6 +42,7 @@
 
 <script>
 import { ref } from "vue";
+import apiFetch from "./../utils/apiFetch";
 
 export default {
   name: "UpdateAccount",
@@ -73,7 +74,7 @@ export default {
       try {
         successMessage.value = "";
 
-        const response = await fetch(`http://localhost:8080/account/${email.value}`, {
+        const response = await apiFetch(`/account/${email.value}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -84,13 +85,13 @@ export default {
           }),
         });
 
-        if (!response.ok) {
-          if (response.status === 404) {
-            throw new Error("Account does not exist.");
-          } else {
-            throw new Error(`Failed to update account. Status: ${response.status}`);
-          }
-        }
+        // if (!response.ok) { // TODO check
+        //   if (response.status === 404) {
+        //     throw new Error("Account does not exist.");
+        //   } else {
+        //     throw new Error(`Failed to update account. Status: ${response.status}`);
+        //   }
+        // }
 
         successMessage.value = "Account updated successfully!";
         clearFields();

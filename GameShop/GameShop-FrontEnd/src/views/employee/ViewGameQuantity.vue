@@ -24,6 +24,7 @@
 <script>
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
+import apiFetch from "./../../utils/apiFetch";
 import { ref, onMounted } from 'vue';
 
 export default defineComponent({
@@ -43,17 +44,17 @@ export default defineComponent({
         try {
             console.log("Fetching games...");
 
-            const response = await fetch("http://localhost:8080/games", {
+            const data = await apiFetch("/games", {
                 method: "GET",
             });
 
-            console.log("API response status:", response.status);
+            // console.log("API response status:", response.status);
 
-            if (!response.ok) {
-                throw new Error(`Failed to fetch games. Status: ${response.status}`);
-            }
+            // if (!response.ok) {
+            //     throw new Error(`Failed to fetch games. Status: ${response.status}`);
+            // }
 
-            const data = await response.json();
+            // const data = await response.json();
             console.log("API response data:", data);
 
             games.value = data.games;
