@@ -1,9 +1,10 @@
 // auth.js
-
 import { defineStore } from "pinia";
 import { useRouter } from "vue-router";
+// file we are currently testing
 import { useCartStore } from "@/stores/cart";
 import { useWishlistStore } from "@/stores/wishlist";
+import api from "./../utils/axiosConfig";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -26,23 +27,22 @@ export const useAuthStore = defineStore("auth", {
     },
     async login(email, password) {
       try {
-        console.log("Starting login process for:", email);
+        console.log("Starting login:", email, password);
 
-        const response = await fetch("http://localhost:8080/account/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        });
+        const response = await api.post("/account/login", { email, password });
 
-        if (!response.ok) {
-          throw new Error("Invalid credentials or account not found.");
+        if (response.status !== 200) {
+          console.log("Login failed:", response);
+          console.log("Response status:", response.status);
+          console.log("Response text:", response.statusText);
+          throw new Error("Invalid credentials or account not found.", response);
         }
 
-        const data = await response.json();
-        console.log("Login successful:", data);
+        // const data = await response.json();
+        console.log("Login successful:", response.data);
 
-        this.user = { email: data.email };
-        this.accountType = data.type;
+        this.user = { email: response.data.email };
+        this.accountType = response.data.type;
 
         localStorage.setItem("user", JSON.stringify(this.user));
         localStorage.setItem("accountType", JSON.stringify(this.accountType));
