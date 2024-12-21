@@ -118,7 +118,7 @@
   
       const createPlatform = async () => {
         try {
-          await axios.post('http://localhost:8080/platforms', {
+          await api.post('/platforms', {
             platformName: newPlatformName.value,
             managerEmail: 'manager@manager.com', // Replace with actual manager email
           });
@@ -142,7 +142,7 @@
           return;
         }
         try {
-          await axios.put(`http://localhost:8080/platforms/${selectedPlatformId.value}`, {
+          await api.put(`/platforms/${selectedPlatformId.value}`, {
             platformName: selectedPlatformName.value,
           });
           showEditDialog.value = false;
@@ -163,7 +163,7 @@
           return;
         }
         try {
-          await axios.delete(`http://localhost:8080/platforms/${platformId}`);
+          await api.delete(`/platforms/${platformId}`);
           showDeleteDialog.value = false;
           platformToDeleteName.value = '';
           deleteError.value = '';

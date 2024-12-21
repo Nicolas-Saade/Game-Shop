@@ -118,7 +118,7 @@ export default defineComponent({
 
     const createCategory = async () => {
       try {
-        await axios.post('http://localhost:8080/categories', {
+        await api.post('/categories', {
           categoryName: newCategoryName.value,
           managerEmail: 'manager@manager.com', // Replace with actual manager email
         });
@@ -142,7 +142,7 @@ export default defineComponent({
         return;
       }
       try {
-        await axios.put(`http://localhost:8080/categories/${selectedCategoryId.value}`, {
+        await api.put(`/categories/${selectedCategoryId.value}`, {
           categoryName: selectedCategoryName.value,
         });
         showEditDialog.value = false;
@@ -163,7 +163,7 @@ export default defineComponent({
         return;
       }
       try {
-        await axios.delete(`http://localhost:8080/categories/${categoryId}`);
+        await api.delete(`/categories/${categoryId}`);
         showDeleteDialog.value = false;
         categoryToDeleteName.value = '';
         deleteError.value = '';

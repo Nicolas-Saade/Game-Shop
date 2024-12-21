@@ -187,12 +187,12 @@ export default defineComponent({
         };
 
         if (isEditing.value) {
-          await axios.put(
-            `http://localhost:8080/promotions/${promotionForm.value.promotionId}`,
+          await api.put(
+            `/promotions/${promotionForm.value.promotionId}`,
             payload
           );
         } else {
-          await axios.post('http://localhost:8080/promotions', payload);
+          await api.post('/promotions', payload);
         }
 
         closePromotionDialog();
@@ -222,8 +222,8 @@ export default defineComponent({
 
     const deletePromotion = async () => {
       try {
-        await axios.delete(
-          `http://localhost:8080/promotions/${promotionToDelete.value.promotionId}`
+        await api.delete(
+          `/promotions/${promotionToDelete.value.promotionId}`
         );
         showDeleteDialog.value = false;
         await fetchPromotions();

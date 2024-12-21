@@ -41,7 +41,7 @@ export const usePromotionsStore = defineStore("promotions", {
 
     async createPromotion(promotionData) {
       try {
-        await axios.post('http://localhost:8080/promotions', promotionData);
+        await api.post('/promotions', promotionData);
         await this.fetchPromotions();
       } catch (error) {
         console.error('Error creating promotion:', error);
@@ -51,8 +51,8 @@ export const usePromotionsStore = defineStore("promotions", {
 
     async updatePromotion(promotionId, promotionData) {
       try {
-        await axios.put(
-          `http://localhost:8080/promotions/${promotionId}`,
+        await api.put(
+          `/promotions/${promotionId}`,
           promotionData
         );
         await this.fetchPromotions();
@@ -64,7 +64,7 @@ export const usePromotionsStore = defineStore("promotions", {
 
     async deletePromotion(promotionId) {
       try {
-        await axios.delete(`http://localhost:8080/promotions/${promotionId}`);
+        await api.delete(`/promotions/${promotionId}`);
         await this.fetchPromotions();
       } catch (error) {
         console.error('Error deleting promotion:', error);
