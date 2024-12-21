@@ -381,7 +381,7 @@ export default defineComponent({
 
       // Fetch platforms dynamically from the backend
       try {
-        const data = await apiFetch("platforms");
+        const data = await apiFetch("/platforms");
         // const data = await response.json();
         platforms.value = data.platforms.map((plat) => ({
           platformName: plat.platformName,
