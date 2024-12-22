@@ -1,4 +1,6 @@
-Documentation
+
+
+##Documentation
 --------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 * [Database, Persistence and Design Decisions](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)
