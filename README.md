@@ -41,31 +41,7 @@ The live application is hosted on **Render**. You can access it here: [Live Webs
 
 Have fun!
 
-### **Option 2: Try Locally for a smoother experience**
-Follow these steps to run the project locally.
-
-1. Clone the Repository:
-   ```bash
-   git clone https://github.com/McGill-ECSE321-Fall2024/project-group-10.git
-   cd GameShop
-   ```
-
-2. Build and Run:
-   Ensure you have Docker installed on your system. Then run:
-   ```bash
-   docker build -t gameshop-app .
-   docker run -p 8080:8080 gameshop-app
-   ```
-
-3. Access the Application:
-   - Open your browser and navigate to `http://localhost:8080`.
-
-4. **Admin Login**:
-   Use the following credentials to access admin features:
-   - Email: `manager@manager.com`
-   - Password: `manager123`
-
-### **Option 3: Watch Demo Video**
+### **Option 2: Watch Demo Video**
 For those who prefer not to test the application themselves, here are demo videos showcasing the features:
 - **User Registration and Login**: [Watch Video](link-to-video)
 - **Game Management by Admin**: [Watch Video](link-to-video)
@@ -92,6 +68,6 @@ For those who prefer not to test the application themselves, here are demo video
 ---
 
 ## **Contact**
-For any inquiries, please contact me at [nicolasnsaade@gmail.com](mailto:nicolasnsaade@gmail.com).
+For any inquiries, feel free to contact me at [nicolasnsaade@gmail.com](mailto:nicolasnsaade@gmail.com).
 
 ---
