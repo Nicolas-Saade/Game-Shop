@@ -37,7 +37,7 @@ The live application is hosted on **Render**. You can access it here: [Live Webs
 > **Note**: The server has limited resources, so please ensure to close the session after use to avoid overloading.
 > ⚠️ Please DON'T use any of your real-life sensitive passwords for the demo, as our database and communications is NOT 100% secure from malicious attacks.
 > ⚠️ To login as a manager use the following credentials: Email: manager@manager.com, Password: manager123
-> ⚠️ To login as a user, create a user through the Register button and then login again.
+> ⚠️ To login as a user, create a user through the Register button and then login again (you can also use the user I have in the demo video: email: NicolasSaade@gmail.com, password: nicolas).
 
 Have fun!
 
