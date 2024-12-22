@@ -32,7 +32,7 @@ It features a **Vue.js** frontend (built with **Vite**) and a **Spring Boot** ba
 ## **Instructions for Use**
 
 ### **Option 1: Live Demo**
-The live application is hosted on **Render**. You can access it here: [Live Website]([link-to-your-live-demo](https://game-shop-zabi.onrender.com)).
+The live application is hosted on **Render**. You can access it here: [Live Website](https://game-shop-zabi.onrender.com).
 
 > **Note**: The server has limited resources, so please ensure to close the session after use to avoid overloading.
 > ⚠️ Please DON'T use any of your real-life sensitive passwords for the demo, as our database and communications is NOT 100% secure from malicious attacks.
@@ -46,11 +46,11 @@ Follow these steps to run the project locally.
 
 1. Clone the Repository:
    ```bash
-   git clone https://github.com/your-repo-url
+   git clone https://github.com/McGill-ECSE321-Fall2024/project-group-10.git
    cd GameShop
    ```
 
-2. Build and Run with Docker:
+2. Build and Run:
    Ensure you have Docker installed on your system. Then run:
    ```bash
    docker build -t gameshop-app .
@@ -71,20 +71,6 @@ For those who prefer not to test the application themselves, here are demo video
 - **Game Management by Admin**: [Watch Video](link-to-video)
 - **Purchasing a Game as a Customer**: [Watch Video](link-to-video)
 
----
-
-## **Environment Variables**
-To run the project, ensure the following environment variables are set:
-
-| Variable           | Description                  | Example                     |
-|--------------------|------------------------------|-----------------------------|
-| `DATABASE_URL`     | PostgreSQL connection URL    | `jdbc:postgresql://...`     |
-| `DB_USERNAME`      | Database username            | `your-db-username`          |
-| `DB_PASSWORD`      | Database password            | `your-db-password`          |
-| `VITE_BASE_URL`    | Backend API base URL         | `http://localhost:8080`     |
-
----
-
 ## **Screenshots**
 
 ### Homepage
@@ -97,15 +83,15 @@ To run the project, ensure the following environment variables are set:
 
 ## **Tech Stack**
 
-- **Frontend**: Vue.js (Vite)
-- **Backend**: Spring Boot
-- **Database**: PostgreSQL
+- **Frontend**: Vue.js (Vite), JavaScript, HTML, CSS
+- **Backend**: Spring Boot, Java
+- **Database**: PostgreSQL, Hibernate
 - **Deployment**: Render
 - **Containerization**: Docker
 
 ---
 
 ## **Contact**
-For any inquiries, please contact me at [your-email@example.com](mailto:your-email@example.com).
+For any inquiries, please contact me at [nicolasnsaade@gmail.com](mailto:nicolasnsaade@gmail.com).
 
 ---
