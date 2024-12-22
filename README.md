@@ -47,14 +47,6 @@ For those who prefer not to test the application themselves, here are demo video
 - **Game Management by Admin**: [Watch Video](link-to-video)
 - **Purchasing a Game as a Customer**: [Watch Video](link-to-video)
 
-## **Screenshots**
-
-### Homepage
-[Insert screenshot here]
-
-### Admin Dashboard
-[Insert screenshot here]
-
 ---
 
 ## **Tech Stack**
