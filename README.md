@@ -10,16 +10,6 @@ It features a **Vue.js** frontend (built with **Vite**) and a **Spring Boot** ba
 
 ---
 
-## **Documentation**
-
-- **[Database, Persistence, and Design Decisions](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)**
-- **[Back-end/Controller Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report)**
-- **[Front-end/View Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-3:-Project-Report)**
-- **[API Swagger Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)**
-- **[QA Plan with Jacoco Coverage](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)**
-
----
-
 ## **Features**
 
 - User registration, login, and authentication.
@@ -49,6 +39,16 @@ For those who prefer not to test the application themselves, here are demo video
 
 ---
 
+## **Documentation**
+
+- **[Database, Persistence, and Design Decisions](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)**
+- **[Back-end/Controller Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report)**
+- **[Front-end/View Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-3:-Project-Report)**
+- **[API Swagger Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)**
+- **[QA Plan with Jacoco Coverage](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)**
+
+---
+
 ## **Tech Stack**
 
 - **Frontend**: Vue.js (Vite), JavaScript, HTML, CSS
@@ -56,10 +56,3 @@ For those who prefer not to test the application themselves, here are demo video
 - **Database**: PostgreSQL, Hibernate
 - **Deployment**: Render
 - **Containerization**: Docker
-
----
-
-## **Contact**
-For any inquiries, feel free to contact me at [nicolasnsaade@gmail.com](mailto:nicolasnsaade@gmail.com).
-
----
