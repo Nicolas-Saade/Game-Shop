@@ -43,9 +43,9 @@ Have fun!
 
 ### **Option 2: Watch Demo Video**
 For those who prefer not to test the application themselves, here are demo videos showcasing the features:
-- **User Registration and Login**: [Watch Video](link-to-video)
-- **Game Management by Admin**: [Watch Video](link-to-video)
-- **Purchasing a Game as a Customer**: [Watch Video](link-to-video)
+- **User/Manager Registration and Login**: [Watch Video](https://youtu.be/GCT4zUlXeZo)
+- **Management by Admin**: [Watch Video](https://youtu.be/iRN_fIQOKLk)
+- **Purchasing a Game as a Customer**: [Watch Video](https://youtu.be/mu1dvoMBnrQ)
 
 ---
 
