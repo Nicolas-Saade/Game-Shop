@@ -1,8 +1,12 @@
-# GameShop Project
+# 🎮 GameShop
 
 ## **Overview**
 
-GameShop is a full-stack web application for managing and purchasing video games. It features a **Vue.js** frontend (built with **Vite**) and a **Spring Boot** backend, deployed on **Render** with a **PostgreSQL** database. This project demonstrates scalable application development, deployment, and server configuration using Docker.
+GameShop is a full-stack web application for:
+- Managing an online storefront of a video game store as the manager or employee.
+- Purchasing and browsing video games as a customer.
+
+It features a **Vue.js** frontend (built with **Vite**) and a **Spring Boot** backend, deployed on **Render** with a **PostgreSQL** database, configured thruogh **Docker Containers**.
 
 ---
 
@@ -19,20 +23,25 @@ GameShop is a full-stack web application for managing and purchasing video games
 ## **Features**
 
 - User registration, login, and authentication.
-- Manager and customer functionalities (add games, manage orders, view inventory).
+- Manager and customer functionalities (add games to catalog, add games to cart/wishlist, manage orders, view inventory).
 - Dynamic categorization of games and live promotions.
-- Integrated frontend and backend with Docker.
+- Smart search options like searching by game name, or game filters.
 
 ---
 
-## **Instructions for Recruiters**
+## **Instructions for Use**
 
 ### **Option 1: Live Demo**
-The live application is hosted on **Render**. You can access it here: [Live Demo](link-to-your-live-demo).
+The live application is hosted on **Render**. You can access it here: [Live Website]([link-to-your-live-demo](https://game-shop-zabi.onrender.com)).
 
 > **Note**: The server has limited resources, so please ensure to close the session after use to avoid overloading.
+> ⚠️ Please DON'T use any of your real-life sensitive passwords for the demo, as our database and communications is NOT 100% secure from malicious attacks.
+> ⚠️ To login as a manager use the following credentials: Email: manager@manager.com, Password: manager123
+> ⚠️ To login as a user, create a user through the Register button and then login again.
 
-### **Option 2: Try Locally**
+Have fun!
+
+### **Option 2: Try Locally for a smoother experience**
 Follow these steps to run the project locally.
 
 1. Clone the Repository:
