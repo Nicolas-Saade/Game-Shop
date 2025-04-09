@@ -1,53 +1,58 @@
-Documentation
---------
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-* [Database, Persistence and Design Decisions](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)
-* [Back-end/Controller Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report)
-* [Front-end/View Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-3:-Project-Report)
+# 🎮 GameShop
 
-* [API Swagger Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)
-* [QA Plan with Jacoco Coverage](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## **Overview**
 
-Build System Instructions
---------
+GameShop is a full-stack web application for:
+- Managing an online storefront of a video game store as the manager or employee.
+- Purchasing and browsing video games as a customer.
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-* The other part of the build system submission (Testing Summary) is to be completed as part of the wiki along with the project report.
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+It features a **Vue.js** frontend (built with **Vite**) and a **Spring Boot** backend, deployed on **Render** with a **PostgreSQL** database, configured thruogh **Docker Containers**.
 
-STEP 1: Clone The Repository
---------
-Begin by opening your terminal, using the cd command to navigate your local directories, and creating a local clone of our git repository in a location of your choosing using the following command:
-git clone https://github.com/McGill-ECSE321-Fall2024/project-group-10.git
+---
 
-Once this is done, you will have a folder called project-group-10 on your machine, containing our codebase under the GameShop folder.
+## **Features**
 
+- User registration, login, and authentication.
+- Manager and customer functionalities (add games to catalog, add games to cart/wishlist, manage orders, view inventory).
+- Dynamic categorization of games and live promotions.
+- Smart search options like searching by game name, or game filters.
 
-STEP 2: Set up the Local PostgreSQL Database
---------
+---
 
-With the repository now locally, cloned, you must create a local PostgreSQL database on your machine, 
-following the detailed instructions found here: https://mcgill-ecse321-fall2024.github.io/tutorial-notes/#_setting_up_a_local_postgresql_database
+## **Instructions for Use**
 
-You are to follow these instructions with the following information specific to our database:
-- NAME: gameshop
-- PORT NUMBER: 5432
-- PASSWORD: grouptenpsql
+### **Option 1: Live Demo**
+The live application is hosted on **Render**. You can access it here: [Live Website](https://game-shop-zabi.onrender.com).
 
+> **Note**: The server has limited resources, so please ensure to close the session after use to avoid overloading.
+> ⚠️ Please DON'T use any of your real-life sensitive passwords for the demo, as our database and communications is NOT 100% secure from malicious attacks.
+> ⚠️ To login as a manager use the following credentials: Email: manager@manager.com, Password: manager123
+> ⚠️ To login as a user, create a user through the Register button and then login again (you can also use the user I have in the demo video: email: NicolasSaade@gmail.com, password: nicolas).
 
-Quick Summary of PostgreSQL Setup:
-1. Start PostgreSQL server.
-2. Open psql.
-3. Create a database with the name gameshop.
-4. Set the port to 5432 and ensure you have the correct password (grouptenpsql).
+Have fun!
 
-STEP 3: Launch IDE & Run Tests
---------
-Now, with the repository and PostgreSQL database set up locally on your machine, you may build and run the tests.
-Launch your IDE and connect your IDE to the database. For example, on VS Code, you would connect through the "Select Postgres Server" button in the bottom ribbon:
+### **Option 2: Watch Demo Video**
+For those who prefer not to test the application themselves, here are demo videos showcasing the features:
+- **User/Manager Registration and Login**: [Watch Video](https://youtu.be/GCT4zUlXeZo)
+- **Management by Admin**: [Watch Video](https://youtu.be/iRN_fIQOKLk)
+- **Purchasing a Game as a Customer**: [Watch Video](https://youtu.be/mu1dvoMBnrQ)
 
-<img width="184" alt="Screenshot 2024-10-13 at 1 09 19 PM" src="https://github.com/user-attachments/assets/a94c06a4-a278-4775-aae0-bf973ba3e82b">
+---
 
+## **Documentation**
 
-Then, run the following command in your terminal to build and test: ./gradlew build -xtest
+- **[Database, Persistence, and Design Decisions](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)**
+- **[Back-end/Controller Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report)**
+- **[Front-end/View Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-3:-Project-Report)**
+- **[API Swagger Documentation](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)**
+- **[QA Plan with Jacoco Coverage](https://github.com/McGill-ECSE321-Fall2024/project-group-10/wiki/Deliverable-2:-Project-Report#iii2-api-docs-instructions)**
+
+---
+
+## **Tech Stack**
+
+- **Frontend**: Vue.js (Vite), JavaScript, HTML, CSS
+- **Backend**: Spring Boot, Java
+- **Database**: PostgreSQL, Hibernate
+- **Deployment**: Render
+- **Containerization**: Docker
