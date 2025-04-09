@@ -1,6 +1,11 @@
 <template>
   <v-container>
-    <h1>Checkout</h1>
+    <h1>Checkout (Demo)</h1>
+    <!-- Add the disclaimer here -->
+    <v-alert type="info" prominent text>
+      This is a demo checkout page. No real payments are processed.
+    </v-alert>
+
     <div
       v-for="item in cartStore.cartItems"
       :key="item.gameId"
@@ -19,7 +24,7 @@
       ></v-textarea>
       <v-text-field
         v-model="paymentCard"
-        label="Payment Card Number"
+        label="Test Payment Number (Demo)"
         :rules="[cardValidation]"
         maxlength="16"
         required
@@ -27,7 +32,7 @@
     </v-form>
 
     <v-btn color="success" @click="completePurchase" :disabled="!formValid">
-      Complete Purchase
+      Submit Demo Order
     </v-btn>
   </v-container>
 </template>
@@ -51,7 +56,7 @@ export default defineComponent({
     const paymentCard = ref("");
     const formValid = ref(false);
     const cardValidation = (value) =>
-      value.length === 16 || "Card must be 16 digits.";
+      value.length === 16 || "Must be 16 characters.";
 
     const total = computed(() => {
       return cartStore.cartItems.reduce(
